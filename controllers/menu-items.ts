@@ -199,6 +199,7 @@ const deleteMenuItem = async (req: Request, res: Response): Promise<Response> =>
 // SOCKETS
 
 const changeStateMenuItem = async (io: Server, room: string, payload: number[]) => {
+console.log("changeStateMenuItem se ejecuta");
 
     try {
 
@@ -206,7 +207,7 @@ const changeStateMenuItem = async (io: Server, room: string, payload: number[]) 
 
         for (const idMenuItem of payload) {
             const menuItem = await MenuItem.findByPk(idMenuItem);
-
+            console.log(menuItem)
             if (menuItem) {
                 menuItem!.disponibilidad = !menuItem?.disponibilidad;
 
@@ -226,6 +227,7 @@ const changeStateMenuItem = async (io: Server, room: string, payload: number[]) 
 }
 
 export {
+    changeStateMenuItem,
     getMenuItems,
     getMenuItemsAvailable,
     getMenuItem,
@@ -233,5 +235,4 @@ export {
     createMenuItem,
     updateMenuItem,
     deleteMenuItem,
-    changeStateMenuItem
 }

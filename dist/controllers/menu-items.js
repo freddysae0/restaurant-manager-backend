@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeStateMenuItem = exports.deleteMenuItem = exports.updateMenuItem = exports.createMenuItem = exports.getMenuItemsByCategory = exports.getMenuItem = exports.getMenuItemsAvailable = exports.getMenuItems = void 0;
+exports.deleteMenuItem = exports.updateMenuItem = exports.createMenuItem = exports.getMenuItemsByCategory = exports.getMenuItem = exports.getMenuItemsAvailable = exports.getMenuItems = exports.changeStateMenuItem = void 0;
 const models_1 = require("../models");
 const category_1 = __importDefault(require("../models/category"));
 const attributesCategory = ['idCategoria', 'nombreCategoria'];
@@ -168,10 +168,12 @@ const deleteMenuItem = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.deleteMenuItem = deleteMenuItem;
 const changeStateMenuItem = (io, room, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("changeStateMenuItem se ejecuta");
     try {
         let menuItemChanged = [];
         for (const idMenuItem of payload) {
             const menuItem = yield models_1.MenuItem.findByPk(idMenuItem);
+            console.log(menuItem);
             if (menuItem) {
                 menuItem.disponibilidad = !(menuItem === null || menuItem === void 0 ? void 0 : menuItem.disponibilidad);
                 yield (menuItem === null || menuItem === void 0 ? void 0 : menuItem.update(menuItem.dataValues));
