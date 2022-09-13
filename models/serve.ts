@@ -13,8 +13,8 @@ export default class AppServer {
     private server = createServer(this.app);
     private io: Server = new Server(this.server, {
         cors: {
-            origin: ['http://localhost:8080', 'http://localhost:4000', 'https://restaurant-manager-cl.herokuapp.com/'],
-            allowedHeaders: ['idComercial']
+            origin: ['http://127.0.0.1:8080', 'http://localhost:4000', 'https://restaurant-manager-cl.herokuapp.com/'],
+            methods: ["GET", "POST"]
         }
     });
     private port: string = process.env.PORT || '4000';

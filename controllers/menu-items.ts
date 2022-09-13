@@ -67,7 +67,28 @@ const getMenuItemsAvailable = async (req: Request, res: Response): Promise<Respo
 
 
 }
+const changeStateMenuItems = async (req:Request , res:Response ): Promise<Response> =>{
+console.log(req.body)
 
+    if(req.body.items){
+        var items = req.body.items;
+        for (let i = 0; i < items.length; i++) {
+            try {
+                const menuItem = await MenuItem.findByPk(items[i]);
+                const newDisponibility = !menuItem?.disponibilidad; 
+                console.log(newDisponibility)
+                menuItem?.update({disponibilidad:newDisponibility})
+                
+            } catch (error) {
+                console.log(error);
+                
+            }
+
+        }
+    }
+    
+    return res.json();
+}
 const getMenuItem = async (req: Request, res: Response): Promise<Response> => {
 
     const { id } = req.params;
@@ -235,4 +256,5 @@ export {
     createMenuItem,
     updateMenuItem,
     deleteMenuItem,
+    changeStateMenuItems,
 }

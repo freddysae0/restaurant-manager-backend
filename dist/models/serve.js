@@ -16,8 +16,8 @@ class AppServer {
         this.server = (0, http_1.createServer)(this.app);
         this.io = new socket_io_1.Server(this.server, {
             cors: {
-                origin: ['http://localhost:8080', 'http://localhost:4000', 'https://restaurant-manager-cl.herokuapp.com/'],
-                allowedHeaders: ['idComercial']
+                origin: ['http://127.0.0.1:8080', 'http://localhost:4000', 'https://restaurant-manager-cl.herokuapp.com/'],
+                methods: ["GET", "POST"]
             }
         });
         this.port = process.env.PORT || '4000';

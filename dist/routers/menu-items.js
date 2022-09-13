@@ -6,6 +6,8 @@ const db_validators_1 = require("../helpers/db-validators");
 const menu_items_1 = require("../controllers/menu-items");
 const middlewares_1 = require("../middlewares");
 const router = (0, express_1.Router)();
+router.put('/changeMenu', [(0, express_validator_1.check)('items').not().isEmpty()
+], menu_items_1.changeStateMenuItems);
 router.get('/', [], menu_items_1.getMenuItems);
 router.get('/available', [], menu_items_1.getMenuItemsAvailable);
 router.get('/:id', [

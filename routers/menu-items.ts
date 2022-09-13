@@ -10,12 +10,15 @@ import {
     createMenuItem,
     updateMenuItem,
     deleteMenuItem,
+    changeStateMenuItems
 } from '../controllers/menu-items';
 import { validFields } from "../middlewares";
 
 const router: Router = Router();
 
 
+router.put('/changeMenu', [check('items').not().isEmpty()
+], changeStateMenuItems);
 router.get('/', [
 ], getMenuItems);
 
@@ -34,46 +37,46 @@ router.get('/category/:idCategory', [
 
 router.post('/', [
     check('nombre_item')
-        .not().isEmpty()
-        .withMessage('El nombre del item es obligatorio')
-        .isLength({ min: 3 })
+    .not().isEmpty()
+    .withMessage('El nombre del item es obligatorio')
+    .isLength({ min: 3 })
         .withMessage('El nombre del item debe tener al menos 3 caracteres'),
-    check('precio')
+        check('precio')
         .not().isEmpty()
         .withMessage('El precio es obligatorio')
         .isFloat()
         .withMessage('El precio debe ser un numero flotante'),
-    check('disponibilidad')
+        check('disponibilidad')
         .not().isEmpty()
         .withMessage('La disponibilidad es obligatorio')
         .isBoolean()
         .withMessage('La disponibilidad debe ser un valor booleano'),
-    check('detalles_item')
+        check('detalles_item')
         .not().isEmpty()
         .withMessage('El detalle del item es obligatorio')
         .isLength({ min: 5 })
         .withMessage('El detalle del item debe tener al menos 5 caracteres'),
-    check('descuento')
+        check('descuento')
         .not().isEmpty()
         .withMessage('El descuento es obligatorio')
         .isFloat()
         .withMessage('El descuento debe ser un numero flotante'),
-    check('idCategoria')
+        check('idCategoria')
         .not().isEmpty()
         .withMessage('El idCategoria es obligatorio')
         .isInt({ min: 1 })
         .withMessage('El idCategoria debe ser un numero entero positivo'),
-    check('idComercial')
+        check('idComercial')
         .not().isEmpty()
         .withMessage('El idComercial es obligatorio')
         .isInt({ min: 1 })
         .withMessage('El idComercial debe ser un numero entero positivo'),
-    validFields
-], createMenuItem);
-
-router.put('/:id', [
-    check('id').custom(hasExistMenuItem),
-    check('nombre_item')
+        validFields
+    ], createMenuItem);
+    
+    router.put('/:id', [
+        check('id').custom(hasExistMenuItem),
+        check('nombre_item')
         .not().isEmpty()
         .withMessage('El nombre del item es obligatorio')
         .isLength({ min: 3 })
@@ -83,7 +86,7 @@ router.put('/:id', [
         .withMessage('El precio es obligatorio')
         .isFloat()
         .withMessage('El precio debe ser un numero flotante'),
-    check('disponibilidad')
+        check('disponibilidad')
         .not().isEmpty()
         .withMessage('La disponibilidad es obligatorio')
         .isBoolean()
