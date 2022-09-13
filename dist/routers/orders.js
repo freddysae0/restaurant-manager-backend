@@ -15,9 +15,7 @@ router.get('/:id', [
 router.post('/', [
     (0, express_validator_1.check)('nombreCliente')
         .not().isEmpty()
-        .withMessage('El nombre del cliente es obligatorio')
-        .isLength({ min: 2 })
-        .withMessage('El nombre debe tener al menos 2 caracteres'),
+        .withMessage('El nombre del cliente es obligatorio'),
     (0, express_validator_1.check)('fechaOrden')
         .not().isEmpty()
         .withMessage('La fecha de la orden es obligatorio'),
