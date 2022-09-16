@@ -28,6 +28,29 @@ const getCashRegisters = async (req: Request, res: Response): Promise<Response> 
 
 }
 
+
+const getAllCashRegister = async (req: Request, res: Response): Promise<Response> => {
+
+    const date = req.headers['date-current'];
+
+    try {
+
+        const cashRegister = await CashRegister.findAll({
+            limit: 100
+        })
+
+        return res.json({
+            ok: true,
+            cashRegister
+        });
+    } catch (error) {
+        return res.status(500).json({
+            ok: false
+        });
+    }
+
+}
+
 const getCashRegister = async (req: Request, res: Response): Promise<Response> => {
 
     const date = req.headers['date-current'];
@@ -105,4 +128,5 @@ export {
     getCashRegister,
     createCashRegister,
     updateCashRegister
+    ,getAllCashRegister
 }

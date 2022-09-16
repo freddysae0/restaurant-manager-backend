@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateCashRegister = exports.createCashRegister = exports.getCashRegister = exports.getCashRegisters = void 0;
+exports.getAllCashRegister = exports.updateCashRegister = exports.createCashRegister = exports.getCashRegister = exports.getCashRegisters = void 0;
 const models_1 = require("../models");
 const getCashRegisters = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -34,6 +34,24 @@ const getCashRegisters = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getCashRegisters = getCashRegisters;
+const getAllCashRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const date = req.headers['date-current'];
+    try {
+        const cashRegister = yield models_1.CashRegister.findAll({
+            limit: 100
+        });
+        return res.json({
+            ok: true,
+            cashRegister
+        });
+    }
+    catch (error) {
+        return res.status(500).json({
+            ok: false
+        });
+    }
+});
+exports.getAllCashRegister = getAllCashRegister;
 const getCashRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const date = req.headers['date-current'];
     try {

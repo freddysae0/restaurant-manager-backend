@@ -6,6 +6,7 @@ const middlewares_1 = require("../middlewares");
 const express_validator_1 = require("express-validator");
 const db_validators_1 = require("../helpers/db-validators");
 const router = (0, express_1.Router)();
+router.get('/all', [], cash_register_1.getAllCashRegister);
 router.get('/', [], cash_register_1.getCashRegister);
 router.get('/by-date', [], cash_register_1.getCashRegisters);
 router.post('/', [

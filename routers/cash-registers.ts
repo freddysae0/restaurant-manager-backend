@@ -1,11 +1,15 @@
 import { Router } from 'express';
-import { createCashRegister, getCashRegister, getCashRegisters, updateCashRegister } from '../controllers/cash-register';
+import { createCashRegister, getAllCashRegister,getCashRegister, getCashRegisters, updateCashRegister } from '../controllers/cash-register';
 import { validFields } from '../middlewares';
 import { check } from 'express-validator';
 import { hasExistCashRegisterByDate } from '../helpers/db-validators';
 
 
 const router: Router = Router();
+
+router.get('/all', [
+], getAllCashRegister);
+
 
 router.get('/', [
 ], getCashRegister);
