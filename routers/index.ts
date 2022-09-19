@@ -8,6 +8,7 @@ import roles from './roles';
 import cashRegisters from './cash-registers';
 import boxActions from './box-actions';
 import uploads from './uploads';
+import testConection from './test-conection';
 
 export {
     auth,
@@ -19,5 +20,6 @@ export {
     roles,
     cashRegisters,
     boxActions,
-    uploads
+    uploads,
+    testConection
 }

@@ -61,6 +61,11 @@ const getCashRegister = (req, res) => __awaiter(void 0, void 0, void 0, function
                 estado: true
             }
         });
+        if (cashRegister == null) {
+            return res.status(203).json({
+                ok: false
+            });
+        }
         return res.json({
             ok: true,
             cashRegister

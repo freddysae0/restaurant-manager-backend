@@ -64,6 +64,12 @@ const getCashRegister = async (req: Request, res: Response): Promise<Response> =
             }
         })
 
+        if(cashRegister == null){
+            return res.status(203).json({
+                ok: false
+            });
+        }
+
         return res.json({
             ok: true,
             cashRegister

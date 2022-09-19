@@ -32,6 +32,7 @@ class AppServer {
             cashRegisters: '/api/cash-registers',
             boxActions: '/api/box-actions',
             uploads: '/api/uploads',
+            testConection: '/api/test-conection'
         };
         this.middlewares();
         this.routers();
@@ -49,9 +50,10 @@ class AppServer {
         this.app.use(this.paths.cashRegisters, routers_1.cashRegisters);
         this.app.use(this.paths.boxActions, routers_1.boxActions);
         this.app.use(this.paths.uploads, routers_1.uploads);
+        this.app.use(this.paths.testConection, routers_1.testConection);
     }
     middlewares() {
-        this.app.use((0, cors_1.default)());
+        //this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.static('public'));
         this.app.use(express_1.default.json());
         this.app.use((0, express_fileupload_1.default)({
