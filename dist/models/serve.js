@@ -16,23 +16,27 @@ class AppServer {
         this.server = (0, http_1.createServer)(this.app);
         this.io = new socket_io_1.Server(this.server, {
             cors: {
-                origin: ['http://127.0.0.1:8080', 'http://localhost:4000', 'https://restaurant-manager-cl.herokuapp.com/'],
-                methods: ["GET", "POST"]
-            }
+                origin: [
+                    "http://127.0.0.1:8080",
+                    "http://localhost:4000",
+                    "https://restaurant-manager-cl.herokuapp.com/",
+                ],
+                methods: ["GET", "POST"],
+            },
         });
-        this.port = process.env.PORT || '4000';
+        this.port = process.env.PORT || "4000";
         this.paths = {
-            auth: '/api/auth',
-            categories: '/api/categories',
-            menuItems: '/api/menu-items',
-            orders: '/api/orders',
-            tables: '/api/tables',
-            employees: '/api/employees',
-            roles: '/api/roles',
-            cashRegisters: '/api/cash-registers',
-            boxActions: '/api/box-actions',
-            uploads: '/api/uploads',
-            testConection: '/api/test-conection'
+            auth: "/api/auth",
+            categories: "/api/categories",
+            menuItems: "/api/menu-items",
+            orders: "/api/orders",
+            tables: "/api/tables",
+            employees: "/api/employees",
+            roles: "/api/roles",
+            cashRegisters: "/api/cash-registers",
+            boxActions: "/api/box-actions",
+            uploads: "/api/uploads",
+            testConection: "/api/test-conection",
         };
         this.middlewares();
         this.routers();
@@ -53,17 +57,17 @@ class AppServer {
         this.app.use(this.paths.testConection, routers_1.testConection);
     }
     middlewares() {
-        //this.app.use((0, cors_1.default)());
-        this.app.use(express_1.default.static('public'));
+        this.app.use((0, cors_1.default)());
+        this.app.use(express_1.default.static("public"));
         this.app.use(express_1.default.json());
         this.app.use((0, express_fileupload_1.default)({
             useTempFiles: true,
-            tempFileDir: '/tmp/',
+            tempFileDir: "/tmp/",
             createParentPath: true,
         }));
     }
     sockets() {
-        this.io.on('connection', (socket) => (0, controller_1.default)(socket, this.io));
+        this.io.on("connection", (socket) => (0, controller_1.default)(socket, this.io));
     }
     listen() {
         try {

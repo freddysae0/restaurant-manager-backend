@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-
 const testConection = async (
   req: Request,
   res: Response
